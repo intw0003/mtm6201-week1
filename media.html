@@ -1,0 +1,95 @@
+h1 {
+    color: blue;
+}
+
+
+/*  */
+@media (prefers-color-scheme: dark) {
+    h1 {
+        color: lightblue;
+    }
+    body {
+        background-color: rgb(22, 22, 22);
+    }
+    img {
+        opacity: 0.9;
+    }
+}
+
+/* We can add styles that apply only when the device used 
+    is no capable of hovering (i.e. touchscreens, etc.)
+
+    Here we have a button that displays information 
+    when the user hovers over it. on mobile devices, 
+    we might not want this to be the case because hover 
+    is treated as a toggle, and we might have some other
+    functionality present when the user clicks the button.
+
+    So instead, we disable the hover effect, and always
+    display the information that was hidden unless hovered.
+    */
+   
+button {
+    position: relative;
+}
+.popupNoHover {
+    display: none;
+    background-color: red;
+}
+button .popup {
+    position: absolute;
+    display: none;
+    bottom: -350%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: red;
+}
+button:hover .popup {
+    display: block;
+}
+
+@media (hover:none) {
+    button:hover .popup {
+        display: none;
+    }
+    .popupNoHover {
+        display: block;
+    }
+}
+
+
+/* 
+    We can have animations on our websites that some 
+    users might not want to see (either due to accessibilty
+    reasons, or simply personal preference). This setting
+    can be enabled on the device (Visual Effects in Windows 11,
+    Show Animation on windows 10, See https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion#user_preferences
+    for more information)
+
+    We can add media queries that check for this setting and 
+    enable or disable animations or other visual effects.
+ */
+img {
+    max-width: 100%;
+    /* animation: doggo 5s ease-in-out infinite alternate; */
+}
+
+@keyframes doggo {
+    from {
+        transform: rotate(0.25turn)
+    }
+    to {
+        transform: rotate(-0.25turn)
+    }
+}
+/* @media (prefers-reduced-motion: reduce) {
+    img {
+        animation: none;
+    }
+} */
+
+@media (prefers-reduced-motion: no-preference) {
+    img {
+        animation: doggo 5s ease-in-out infinite alternate;
+    }
+}
